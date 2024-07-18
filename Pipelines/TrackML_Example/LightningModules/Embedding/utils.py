@@ -131,7 +131,7 @@ def select_data(
 
             node_features = ["cell_data", "x", "hid", "pid", "pt", "nhits", "primary"]
             for feature in node_features:
-                if feature in event.keys:
+                if feature in event.keys():
                     event[feature] = event[feature][pt_mask]
 
     for event in events:
@@ -139,13 +139,13 @@ def select_data(
         event.signal_true_edges = event[true_edges]
         edge_subset = torch.ones(event.signal_true_edges.shape[1]).bool()
         
-        if "pt" in event.keys:
+        if "pt" in event.keys():
             edge_subset &= (event.pt[event[true_edges]] > pt_signal_cut).all(0)
         
-        if "primary" in event.keys:
+        if "primary" in event.keys():
             edge_subset &= (event.nhits[event[true_edges]] >= nhits_min).all(0)
             
-        if "nhits" in event.keys:
+        if "nhits" in event.keys():
             edge_subset &= ((event.primary[event[true_edges]].bool().all(0) | (not primary_only)))
         
         event.signal_true_edges = event.signal_true_edges[:, edge_subset]
