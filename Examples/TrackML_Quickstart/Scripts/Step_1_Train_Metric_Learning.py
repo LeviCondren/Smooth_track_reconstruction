@@ -30,6 +30,7 @@ def train(config_file="pipeline_config.yaml"):
 
     logging.info(headline("Step 1: Running metric learning training"))
     #test
+    
     with open(config_file) as file:
         all_configs = yaml.load(file, Loader=yaml.FullLoader)
     
