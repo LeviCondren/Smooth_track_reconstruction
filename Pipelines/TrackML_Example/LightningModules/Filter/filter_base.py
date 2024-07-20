@@ -243,7 +243,12 @@ class FilterBase(LightningModule):
         """
         Use this to manually enforce warm-up. In the future, this may become built-into PyLightning
         """
+
+        if optimizer_closure is not None:
+            optimizer_closure()
+
         # warm up lr
+        
         if (self.hparams["warmup"] is not None) and (
             self.trainer.global_step < self.hparams["warmup"]
         ):
