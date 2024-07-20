@@ -224,6 +224,9 @@ class GNNBase(LightningModule):
         using_native_amp=False,
         using_lbfgs=False,
     ):
+        if optimizer_closure is not None:
+            optimizer_closure()
+
         # warm up lr
         if (self.hparams["warmup"] is not None) and (
             self.current_epoch < self.hparams["warmup"]
