@@ -208,6 +208,9 @@ class RegressionBase(LightningModule):
         using_native_amp=False,
         using_lbfgs=False,
     ):
+        if optimizer_closure is not None:
+            optimizer_closure()
+
         # warm up lr
         if (self.hparams["warmup"] is not None) and (
             self.trainer.global_step < self.hparams["warmup"]
