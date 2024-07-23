@@ -53,7 +53,7 @@ def train(config_file="pipeline_config.yaml"):
     )
 
     trainer.fit(model)
-
+    #test
     logging.info(headline("c) Saving model") )
 
     os.makedirs(save_directory, exist_ok=True)
